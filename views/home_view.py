@@ -1,34 +1,18 @@
+#Con este archivo creamos la vista principal del sistema
+#y mandamos a llamar los widgets que vamos a usar
+# y también sus respectivas funciones de control
+#de widgets_home.py y home_controller.py
 import customtkinter as ctk
 #Con esto mandamos a llamar  o importamos los widgets que vamos a usar
 #de la vista widgets_home.py
-#from views.widgets.widgets_home import crear_boton_reportes
-from controllers.home_controller import (
-      #Portamos las funciones del controlador
-      #Es importante que las funciones estén en el controlador
-      #para mantener la separación de responsabilidades     
-      #saludar_usuario,
-      abrir_machotes,
-      abrir_insumos,
-      abrir_inventario,
-      abrir_reportes
-)
+from views.widgets import widgets_home as wh
 
 # Vista principal del sistema
 class HomeView(ctk.CTkFrame):
     def __init__(self, master, controller):
         super().__init__(master)
-
-        label = ctk.CTkLabel(self, text="Bienvenido a Modulus", font=("Arial", 24))
-        label.pack(pady=40)
-
-        btn_machotes = ctk.CTkButton(self, text="Machotes", command=abrir_machotes)
-        btn_machotes.pack(pady=10)
-
-        btn_insumos = ctk.CTkButton(self, text="Insumos", command=abrir_insumos)
-        btn_insumos.pack(pady=10)
-
-        btn_inventario = ctk.CTkButton(self, text="Inventario", command=abrir_inventario)
-        btn_inventario.pack(pady=10)
-        
-        btn_reportes = ctk.CTkButton(self, text="Reportes", command=abrir_reportes)
-        btn_reportes.pack(pady=10)
+        self.controller = controller
+#Ya aquí solo mando a llamar los componentes creados en widgets_home.py
+        # Ejemplo de uso
+        btn_prueba = wh.crear_boton_prueba(self, self.controller.boton_prueba_click)
+        btn_prueba.pack(pady=20)

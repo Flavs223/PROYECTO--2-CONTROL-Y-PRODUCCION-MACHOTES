@@ -1,6 +1,6 @@
 import customtkinter as ctk
 from views.home_view import HomeView
-
+from controllers.home_controller import HomeController
 
 # Si más vistas necesitan cargarse dinámicamente:
 # from views.machote_view import MachoteView
@@ -24,7 +24,8 @@ class App(ctk.CTk):
 
     def show_home(self):
         self.clear_view()
-        self.current_view = HomeView(self, controller=self)
+        controlador = HomeController(app=self)  # Creamos el controlador
+        self.current_view = HomeView(self, controller=controlador)
         self.current_view.pack(fill="both", expand=True)
 
     # Puedes definir más métodos para cambiar de vista desde los botones
