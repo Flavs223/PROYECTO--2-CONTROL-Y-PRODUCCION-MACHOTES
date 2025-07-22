@@ -1,4 +1,7 @@
 import customtkinter as ctk
+#Con esto mandamos a llamar  o importamos los widgets que vamos a usar
+#de la vista widgets_home.py
+#from views.widgets.widgets_home import crear_boton_reportes
 from controllers.home_controller import (
       #Portamos las funciones del controlador
       #Es importante que las funciones estén en el controlador
