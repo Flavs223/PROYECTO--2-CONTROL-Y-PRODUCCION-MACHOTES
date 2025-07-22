@@ -3,13 +3,14 @@
 # y también sus respectivas funciones de control
 #de widgets_home.py y home_controller.py
 import customtkinter as ctk
+from utils.helpers import get_image_path
 from PIL import Image
 import os
 #Con esto mandamos a llamar  o importamos los widgets que vamos a usar
 #de la vista widgets_home.py
 from views.widgets import widgets_home as wh
 
-from utils.rutas import obtener_ruta_imagen #Esta función nos ayuda a obtener la ruta de las imágenes
+#from utils.rutas import obtener_ruta_imagen #Esta función nos ayuda a obtener la ruta de las imágenes
 class HomeView(ctk.CTkFrame):
     def __init__(self, master, controller):
         super().__init__(master)
@@ -17,20 +18,24 @@ class HomeView(ctk.CTkFrame):
         self.configure(fg_color="#F2B28D")  # Fondo durazno claro
 
         # Imagen
-        image_path = os.path.join("assets","imagenes", "modulus_logo.jpeg")
-        if not os.path.exists(image_path):
-            print(f"❌ Imagen no encontrada en: {image_path}")
+        #Encuentra la ruta de la imagen y la guarda en image_path
+        image_path = get_image_path("logo.png")
+        # Si la imagen existe, la carga y la muestra
+        if image_path:
+            logo_image = ctk.CTkImage(Image.open(image_path), size=(350, 350))
+            label_logo = ctk.CTkLabel(self, image=logo_image, text="")
+            label_logo.image = logo_image  # importante mantener la referencia
+            label_logo.pack(pady=10)
+            print(f"Imagen cargada desde: {image_path}")
+        # Si la imagen no existe, muestra un mensaje de error
         else:
-            print(f"✅ Imagen cargada desde: {image_path}")
-
-        
-        logo_image = ctk.CTkImage(Image.open(image_path), size=(150, 150))
-        logo_label = ctk.CTkLabel(self, image=logo_image, text="")
-        logo_label.pack(pady=(30, 10))
-
+            print(f"Imagen no encontrada en: {image_path}")
+            
         # Eslogan
-        eslogan_label = ctk.CTkLabel(self, text="Sistema de Control y Producción",
-                                     font=ctk.CTkFont(size=18, weight="bold"))
+        eslogan_label = ctk.CTkLabel(self, 
+                                     text="Gestión y producción eficientes",
+                                     text_color="black",
+                                     font=("Gotham Rounded", 38, "bold"))
         eslogan_label.pack(pady=(0, 30))
 
         # ===== FILA 1: Botones 1, 2, 3 =====
