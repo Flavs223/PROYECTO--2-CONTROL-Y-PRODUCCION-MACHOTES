@@ -3,7 +3,9 @@ from views.home_view import HomeView
 from controllers.home_controller import HomeController
 from utils.helpers import registrar_fuentes_personalizadas
 import time
-
+import pyautogui
+print(pyautogui.size())
+print("sasd")
 class App(ctk.CTk):
     def __init__(self):
         super().__init__()
@@ -16,7 +18,7 @@ class App(ctk.CTk):
         self.geometry(f"{screen_width}x{screen_height}")
         self.resizable(True, True) # Permite redimensionar la ventana
         
-        self.configure(fg_color="#F2B28D") 
+        self.configure(fg_color="#CC06AE") 
         self.current_view = None
         self.show_home()
 
@@ -30,6 +32,8 @@ class App(ctk.CTk):
         self.current_view = HomeView(self, controller=controlador)
         self.current_view.pack(fill="both", expand=True)
 
+    
+    
 if __name__ == "__main__":
     
     ctk.set_appearance_mode("System")
