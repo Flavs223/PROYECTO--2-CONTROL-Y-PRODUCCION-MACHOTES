@@ -21,10 +21,11 @@ class HomeView(ctk.CTkFrame):
         image_path = get_image_path("logo.png")
         # Si la imagen existe, la carga y la muestra
         if image_path:
-            logo_image = ctk.CTkImage(Image.open(image_path), size=(350, 350))
+            logo_image = ctk.CTkImage(Image.open(image_path), size=(350, 280))
             label_logo = ctk.CTkLabel(self, image=logo_image, text="")
             label_logo.image = logo_image  # Mantener referencia
-            label_logo.pack(pady=(40, 10))
+            #el pady es (espacio arriba, espacio abajo)
+            label_logo.pack(pady=(60, 1))
         else:
             ctk.CTkLabel(self, text="[Logo no encontrado]").pack(pady=10)
             print(f"Imagen no encontrada en: {image_path}")
@@ -32,7 +33,7 @@ class HomeView(ctk.CTkFrame):
         
         #Creación de eslogan
         eslogan = wh.crear_eslogan(self, "Gestiona y controla tus producciones de manera eficiente")
-        eslogan.pack(pady=(0, 30))
+        eslogan.pack(pady=(30, 30))
         
         # ===== FILA 1 de otones 1, 2, 3 =====
         # Aquí creamos los botones de la primera fila

@@ -51,5 +51,5 @@ def crear_eslogan(parent,texto):
             master=parent,
             text=texto,
             text_color="black",
-            font=("Gotham Rounded", 28, "bold")
+            font=("Gotham Rounded", 38, "bold")
       )
