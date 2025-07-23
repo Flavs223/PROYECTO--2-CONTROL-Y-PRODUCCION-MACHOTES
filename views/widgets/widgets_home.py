@@ -24,8 +24,8 @@ def crear_boton_fila1(parent, texto, comando=None):
             width=180,
             height=50,
             corner_radius=10,
-            fg_color="#E07A5F",
-            hover_color="#D1603D",
+            fg_color="#ad94f2",
+            hover_color="#7651ec",
             text_color="white",
             font=("Gotham Rounded", 18, "bold")
       )
@@ -38,8 +38,8 @@ def crear_boton_fila2(parent, texto, comando=None):
             width=180,
             height=50,
             corner_radius=10,
-            fg_color="#CF5534",
-            hover_color="#DE8165",
+            fg_color="#94d9f2",
+            hover_color="#94baf2",
             text_color="white",
             font=("Gotham Rounded", 18, "bold")
       )

@@ -9,7 +9,7 @@ print("sasd")
 class App(ctk.CTk):
     def __init__(self):
         super().__init__()
-        self.title("Sistema de Control y Producción de Machotes")
+        self.title("Modulus - Sistema de Control y Producción de Machotes")
         #self.geometry("900x600")
         screen_width = self.winfo_screenwidth()
         screen_height = self.winfo_screenheight()

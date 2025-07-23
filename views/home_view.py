@@ -13,7 +13,7 @@ class HomeView(ctk.CTkFrame):
     def __init__(self, master, controller):
         super().__init__(master)
         self.controller = controller
-        self.configure(fg_color="#F2B28D")  # Fondo durazno claro
+        self.configure(fg_color="#F2AD94")  # Fondo durazno claro
         self.pack(fill="both", expand=True)
         
         #Logo y bienvenida
