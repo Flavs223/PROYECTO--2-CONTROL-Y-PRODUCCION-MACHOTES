@@ -3,12 +3,10 @@
 # y también sus respectivas funciones de control
 #de widgets_home.py y home_controller.py
 import customtkinter as ctk
-from utils.helpers import get_image_path
 from PIL import Image
+from utils.helpers import get_image_path
+from views.widgets import widgets_home as wh #Con esto mandamos a llamar  o importamos los widgets que vamos a usar de la vista widgets_home.py
 import os
-#Con esto mandamos a llamar  o importamos los widgets que vamos a usar
-#de la vista widgets_home.py
-from views.widgets import widgets_home as wh
 
 #from utils.rutas import obtener_ruta_imagen #Esta función nos ayuda a obtener la ruta de las imágenes
 class HomeView(ctk.CTkFrame):
@@ -16,46 +14,47 @@ class HomeView(ctk.CTkFrame):
         super().__init__(master)
         self.controller = controller
         self.configure(fg_color="#F2B28D")  # Fondo durazno claro
-
-        # Imagen
+        self.pack(fill="both", expand=True)
+        
+        #Logo y bienvenida
         #Encuentra la ruta de la imagen y la guarda en image_path
         image_path = get_image_path("logo.png")
         # Si la imagen existe, la carga y la muestra
         if image_path:
             logo_image = ctk.CTkImage(Image.open(image_path), size=(350, 350))
             label_logo = ctk.CTkLabel(self, image=logo_image, text="")
-            label_logo.image = logo_image  # importante mantener la referencia
-            label_logo.pack(pady=10)
-            print(f"Imagen cargada desde: {image_path}")
-        # Si la imagen no existe, muestra un mensaje de error
+            label_logo.image = logo_image  # Mantener referencia
+            label_logo.pack(pady=(40, 10))
         else:
+            ctk.CTkLabel(self, text="[Logo no encontrado]").pack(pady=10)
             print(f"Imagen no encontrada en: {image_path}")
-            
-        # Eslogan
-        eslogan_label = ctk.CTkLabel(self, 
-                                     text="Gestión y producción eficientes",
-                                     text_color="black",
-                                     font=("Gotham Rounded", 38, "bold"))
-        eslogan_label.pack(pady=(0, 30))
-
-        # ===== FILA 1: Botones 1, 2, 3 =====
+        
+        
+        #Creación de eslogan
+        eslogan = wh.crear_eslogan(self, "Gestiona y controla tus producciones de manera eficiente")
+        eslogan.pack(pady=(0, 30))
+        
+        # ===== FILA 1 de otones 1, 2, 3 =====
+        # Aquí creamos los botones de la primera fila
+        # y los empaquetamos en un frame para que se vean bien  
         fila1 = ctk.CTkFrame(self, fg_color="transparent")
-        fila1.pack(pady=5)
+        fila1.pack(pady=10)
 
-        btn1 = ctk.CTkButton(fila1, text="Machotes", width=120)
-        btn2 = ctk.CTkButton(fila1, text="Insumos", width=120)
-        btn3 = ctk.CTkButton(fila1, text="Inventario", width=120)
+        btn1 = wh.crear_boton_fila1(fila1,"Machotes", lambda: print("Machotes"))
+        btn2 = wh.crear_boton_fila1(fila1,"Insumos", lambda: print("Insumos"))
+        btn3 = wh.crear_boton_fila1(fila1,"Inventario", lambda: print("Inventario"))
 
-        btn1.pack(side="left", padx=10)
-        btn2.pack(side="left", padx=10)
-        btn3.pack(side="left", padx=10)
+        btn1.pack(side="left", padx=15)
+        btn2.pack(side="left", padx=15)
+        btn3.pack(side="left", padx=15)
 
-        # ===== FILA 2: Botones 4, 5 =====
+        # ===== FILA 2 de botones 4, 5 =====
         fila2 = ctk.CTkFrame(self, fg_color="transparent")
         fila2.pack(pady=10)
 
-        btn4 = ctk.CTkButton(fila2, text="Reportes", width=120)
-        btn5 = ctk.CTkButton(fila2, text="Salir", width=120)
+        btn4 = wh.crear_boton_fila2(fila2,"Reportes", lambda: print("Reportes"))
+        btn5 = wh.crear_boton_fila2(fila2,"Salir", lambda: self.controller.app.quit())
 
-        btn4.pack(side="left", padx=20)
-        btn5.pack(side="left", padx=20)
+        # Centrado manual en fila 2
+        btn4.pack(side="left", padx=30)
+        btn5.pack(side="left", padx=30)

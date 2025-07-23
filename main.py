@@ -1,6 +1,7 @@
 import customtkinter as ctk
 from views.home_view import HomeView
 from controllers.home_controller import HomeController
+from utils.helpers import registrar_fuentes_personalizadas
 import time
 
 class App(ctk.CTk):
@@ -32,6 +33,7 @@ class App(ctk.CTk):
 if __name__ == "__main__":
     
     ctk.set_appearance_mode("System")
+    registrar_fuentes_personalizadas()
     #ctk.set_default_color_theme("blue")
 
     app = App()
