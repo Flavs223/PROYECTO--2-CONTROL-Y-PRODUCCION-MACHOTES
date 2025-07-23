@@ -5,7 +5,7 @@ from utils.helpers import registrar_fuentes_personalizadas
 import time
 import pyautogui
 print(pyautogui.size())
-print("sasd")
+print("A")
 class App(ctk.CTk):
     def __init__(self):
         super().__init__()
